@@ -20,7 +20,7 @@ from jet import urls as jet
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
-    path('reqs/', include('reqs.urls')),
+    path('', include('reqs.urls')),
     path('admin/', admin.site.urls),
     path('markdownx/', include(markdownx)),
     path('jet/', include('jet.urls', 'jet')),  # Django JET URLS

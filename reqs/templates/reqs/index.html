@@ -1,0 +1,12 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'reqs/style.css' %}" />
+{% if project_list %}
+    <ul>
+        {% for project in project_list %}
+        <li><a href="{% url 'reqs:detail' project.id %}">{{ project.project_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No projects available</p>
+{% endif %}    

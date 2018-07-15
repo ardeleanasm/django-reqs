@@ -1,3 +1,5 @@
 Django==2.0.7
 gunicorn==19.6.0
 django-jet
+django-markdownx
+django-admin-view-permission

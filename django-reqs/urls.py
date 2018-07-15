@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path,include
 from markdownx import urls as markdownx
 from jet import urls as jet
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('reqs/', include('reqs.urls')),
     path('admin/', admin.site.urls),
@@ -24,4 +26,4 @@ urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
     
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

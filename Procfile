@@ -1,1 +1,1 @@
-web gunicorn reqs.wsgi --log-file -
+web gunicorn djang-reqs.wsgi --log-file -

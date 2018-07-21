@@ -7,7 +7,7 @@ from django.views import generic
 from django.utils import timezone
 from .models import Project,File
 from .forms import SignUpForm
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -44,3 +44,8 @@ def signup(request):
     else:
         form=SignUpForm()
     return render(request,'reqs/signup.html',{'form':form})
+
+
+def reqs_logout(request):
+    logout(request)
+    return redirect('../')

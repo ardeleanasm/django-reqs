@@ -1,6 +1,7 @@
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'reqs/style.css' %}" />
+{% include 'reqs/links.html' %}
 {% if project_list %}
     <ul>
         {% for project in project_list %}

@@ -1,0 +1,26 @@
+{% extends 'reqs/bootstrap.html' %}
+
+{% load bootstrap4 %}
+
+User: {{ user.get_username }}
+{% block bootstrap4_content %}
+    <div class="container">
+        <h1>{% block title %}(no title){% endblock %}</h1>
+
+        <p>
+            <a href="/">Home</a>
+            {% if user.is_authenticated %}
+                <a href="/logout">Logout</a>   
+            {% else %}
+                <a href="/admin/login/">Login</a>
+                <a href="/signup">Signup</a>
+            {% endif %}  
+            <a href="/about">About</a>
+        </p>
+
+        {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+
+        {% block content %}(no content){% endblock %}
+    </div>
+
+{% endblock %}

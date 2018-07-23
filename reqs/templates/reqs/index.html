@@ -1,9 +1,9 @@
+{% extends 'reqs/base.html' %}
 {% load static %}
+{% load bootstrap4 %}
 
-
-{% include 'reqs/_header.html' %}
-<link rel="stylesheet" type="text/css" href="{% static 'reqs/style.css' %}" />
-{% include 'reqs/_links.html' %}
+{% block title %}Reqs{% endblock %}
+{% block content %}
 {% if project_list %}
     <ul>
         {% for project in project_list %}
@@ -13,3 +13,4 @@
 {% else %}
     <p>No projects available</p>
 {% endif %}    
+{% endblock %}

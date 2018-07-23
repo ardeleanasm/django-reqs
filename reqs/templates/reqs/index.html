@@ -2,8 +2,9 @@
 {% load static %}
 {% load bootstrap4 %}
 
-{% block title %}Reqs{% endblock %}
+
 {% block content %}
+User: {{ user.get_username }}
 {% if project_list %}
     <ul>
         {% for project in project_list %}

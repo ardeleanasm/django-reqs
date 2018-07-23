@@ -9,14 +9,15 @@ from jet.admin import CompactInline
 
 # Register your models here.
 
+
 class FileInline(CompactInline):
     model=File
     extra=0
     fields = ('file_name', 'creation_date', 'content')
     
-    #readonly_fields = ( 'content',)
-    show_change_link = True
 
+    show_change_link = True
+    
 
 
 class ProjectAdmin(admin.ModelAdmin):
@@ -24,8 +25,7 @@ class ProjectAdmin(admin.ModelAdmin):
         ('Project Info',{'fields':['project_name','creation_date']}),
         
     ]
-    inlines=[FileInline]    
-    
+    inlines=[FileInline]        
     list_display=('project_name','creation_date')
     list_filter=['creation_date']
     search_fields=['project_name']

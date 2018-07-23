@@ -28,7 +28,8 @@ class FileView(generic.DetailView):
     model=File
     template_name='reqs/file_detail.html'
     def get_queryset(self):
-        return File.objects.filter(creation_date__lte=timezone.now())    
+        return File.objects.all()
+
 
 def signup(request):
     if request.method=='POST':

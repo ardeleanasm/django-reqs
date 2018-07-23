@@ -5,7 +5,7 @@
 
 {% block content %}
 User: {{ user.get_username }}
-{% if project_list %}
+{% comment %} {% if project_list %}
     <ul>
         {% for project in project_list %}
         <li><a href="{% url 'reqs:detail' project.id %}">{{ project.project_name }}</a></li>
@@ -13,5 +13,34 @@ User: {{ user.get_username }}
     </ul>
 {% else %}
     <p>No projects available</p>
-{% endif %}    
+{% endif %}     {% endcomment %}
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.5/jstree.min.js"></script>
+
+<div id="project-container">
+{% if project_list %}
+    <ul>
+        {% for project in project_list %}
+            <li>{{ project.project_name }}
+            <ul>
+                {% for file in project.file_set.all %}
+                    <li><a href="{% url 'reqs:file_detail' file.id %}">{{ file.file_name }}</a></li>
+                    
+                {% endfor %}
+            </ul>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+<p>No projects available</p>
+{% endif %}  
+</div>
+<script>
+    $(function() {
+      $('#project-container').jstree();
+    });
+</script>
+
+
 {% endblock %}

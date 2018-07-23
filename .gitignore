@@ -2,4 +2,3 @@ django-reqs/__*__.py
 django-reqs/__pycache__/*.*
 .vscode/*
 
-db.sqlite3

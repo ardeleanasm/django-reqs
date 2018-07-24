@@ -19,7 +19,10 @@ User: {{ user.get_username }}
                         <li>{{ project.project_name }}
                         <ul>
                             {% for file in project.file_set.all %}
-                                <li><a href="{% url 'reqs:file_detail' file.id %}">{{ file.file_name }}</a></li>
+                                <li data-jstree="{{ file.formatted_markdown }}">{{ file.file_name }}</li>
+                                    
+                                    
+                                    {% comment %} <a href="{% url 'reqs:file_detail' file.id %}">{{ file.file_name }}</a></li> {% endcomment %}
                                 
                             {% endfor %}
                         </ul>
@@ -39,25 +42,17 @@ User: {{ user.get_username }}
 
 
 <script>
-    function fetch_text (url) {
-        return fetch(url).then((response) => (response.text()));
+    
+    
+    function show_content(content){
+        $('#project-detail').html(content);
     }
 
-    function load_home (hyperlink) {
-        if(hyperlink!='#'){
-            fetch_text(hyperlink).then((html) => {
-                $('#project-detail').html(html);
-            }).catch((error) => {
-                console.warn(error);
-            });
-        }
-    } 
-    
     $(function() {
         var selectedNode = $('#project-container').jstree().bind
         ("select_node.jstree", 
             function (event, data) {
-                load_home(data.node.a_attr.href);
+                show_content(data.node.data.jstree);
             }
         )
     }); 

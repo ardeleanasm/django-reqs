@@ -11,7 +11,7 @@ User: {{ user.get_username }}
 <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.5/jstree.min.js"></script>
 
 <div class="row">
-    <div class="column" >
+    <div class="column-left" style="width:20%;height:auto;float:left;">
         <div id="project-container">
             {% if project_list %}
                 <ul>
@@ -34,8 +34,8 @@ User: {{ user.get_username }}
             {% endif %}  
             </div>
     </div>
-    <div class="column" >
-      <div id="project-detail">
+    <div class="column-right" style="width:80%;height:auto;float:left;" >
+      <div id="project-detail" >
       </div>
     </div>
   </div>

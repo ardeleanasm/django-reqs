@@ -11,7 +11,7 @@ User: {{ user.get_username }}
 <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.5/jstree.min.js"></script>
 
 <div class="row">
-    <div class="column" >
+    <div class="column-left" style="width:20%;height:auto;float:left;">
         <div id="project-container">
             {% if project_list %}
                 <ul>
@@ -19,7 +19,10 @@ User: {{ user.get_username }}
                         <li>{{ project.project_name }}
                         <ul>
                             {% for file in project.file_set.all %}
-                                <li><a href="{% url 'reqs:file_detail' file.id %}">{{ file.file_name }}</a></li>
+                                <li data-jstree="{{ file.formatted_markdown }}">{{ file.file_name }}</li>
+                                    
+                                    
+                                    {% comment %} <a href="{% url 'reqs:file_detail' file.id %}">{{ file.file_name }}</a></li> {% endcomment %}
                                 
                             {% endfor %}
                         </ul>
@@ -31,33 +34,25 @@ User: {{ user.get_username }}
             {% endif %}  
             </div>
     </div>
-    <div class="column" >
-      <div id="project-detail">
+    <div class="column-right" style="width:80%;height:auto;float:left;" >
+      <div id="project-detail" >
       </div>
     </div>
   </div>
 
 
 <script>
-    function fetch_text (url) {
-        return fetch(url).then((response) => (response.text()));
+    
+    
+    function show_content(content){
+        $('#project-detail').html(content);
     }
 
-    function load_home (hyperlink) {
-        if(hyperlink!='#'){
-            fetch_text(hyperlink).then((html) => {
-                $('#project-detail').html(html);
-            }).catch((error) => {
-                console.warn(error);
-            });
-        }
-    } 
-    
     $(function() {
         var selectedNode = $('#project-container').jstree().bind
         ("select_node.jstree", 
             function (event, data) {
-                load_home(data.node.a_attr.href);
+                show_content(data.node.data.jstree);
             }
         )
     }); 

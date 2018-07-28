@@ -1,3 +1,6 @@
 {% extends 'bootstrap4/bootstrap4.html' %}
-
 {% block bootstrap4_title %}{% block title %}{% endblock %}{% endblock %}
+
+<!-- SEE->https://stackoverflow.com/questions/8343176/django-templates-extending-and-css -->
+{% comment %} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'reqs/style.css' %}" /> {% endcomment %}

@@ -25,16 +25,3 @@ class ProjectIndexViewTests(TestCase):
         response=self.client.get(reverse('reqs:index'))
         self.assertContains(response,"No projects available")
         self.assertQuerysetEqual(response.context['project_list'],[])
-
-class ProjectDetailViewTests(TestCase):
-    def test_future_project(self):
-        future_project = create_project(project_name='TestProject', days=5)
-        url = reverse('reqs:detail', args=(future_project.id,))
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 404)
-
-    def test_past_project(self):
-        past_project = create_project(project_name='TestProject', days=-5)
-        url = reverse('reqs:detail', args=(past_project.id,))
-        response = self.client.get(url)
-        self.assertContains(response, past_project.project_name)

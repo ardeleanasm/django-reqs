@@ -1,6 +1,0 @@
-<h1>{{ project.project_name }}</h1>
-<ul>
-    {% for file in project.file_set.all %}
-        <li><a href="{% url 'reqs:file_detail' file.id %}">{{ file.file_name }}</a></li>
-    {% endfor %}
-</ul>

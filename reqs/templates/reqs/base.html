@@ -1,7 +1,9 @@
-
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.5/themes/default/style.min.css" />
 {% extends 'reqs/bootstrap.html' %}
-{% load bootstrap4 %}
+{% block extra_head %}
+    {% load static%}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.5/themes/default/style.min.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'reqs/style.css' %}"/>
+{% endblock %}
 
 
 {% block bootstrap4_content %}
@@ -12,17 +14,13 @@
             <a href="/">Home</a>
             {% if user.is_authenticated %}
                 <a href="/logout">Logout</a>   
-            {% else %}
+                {% else %}
                 <a href="/admin/login/">Login</a>
                 <a href="/signup">Signup</a>
             {% endif %}  
             <a href="/about">About</a>
         </p>
-
-        {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
-
-        {% block content %}(no content){% endblock %}
+           {% block content %}(no content){% endblock %}
     </div>
-
 {% endblock %}
 

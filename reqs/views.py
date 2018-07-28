@@ -1,17 +1,16 @@
 from django.shortcuts import render, get_object_or_404,redirect
 
-from .models import Project
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
 from django.views.generic import View
 from django.utils import timezone
-from .models import Project,File
-from .forms import SignUpForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import UserCreationForm
-from .render import Render
 from django.http import HttpResponse
+from .render import Render
+from .forms import SignUpForm
+from .models import Project,File
 
 class IndexView(generic.ListView):
     template_name='reqs/index.html'

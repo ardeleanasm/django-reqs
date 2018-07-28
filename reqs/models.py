@@ -3,9 +3,7 @@ from django.utils import timezone
 import datetime
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
-import base64
 from django.template.defaultfilters import escape
-
 
 # Create your models here.
 class Project(models.Model):
@@ -35,12 +33,6 @@ class File(models.Model):
     def formatted_markdown(self):
         return markdownify(self.content)
 
-    
 
 
-
-
-####
-# class FileAuthors(models.Model):
-#     file=models.ForeignKey(File,on_delete=models.CASCADe)
 

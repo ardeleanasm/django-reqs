@@ -19,11 +19,7 @@ User: {{ user.get_username }}
                         <li>{{ project.project_name }}
                         <ul>
                             {% for file in project.file_set.all %}
-                                <li data-jstree="{{ file.formatted_markdown }}">{{ file.file_name }}</li>
-                                    
-                                    
-                                    {% comment %} <a href="{% url 'reqs:file_detail' file.id %}">{{ file.file_name }}</a></li> {% endcomment %}
-                                
+                                <li id="{{ file.id }}" data-jstree="{{ file.formatted_markdown }}">{{ file.file_name }}</li>
                             {% endfor %}
                         </ul>
                         </li>
@@ -35,7 +31,8 @@ User: {{ user.get_username }}
             </div>
     </div>
     <div class="column-right" style="width:80%;height:auto;float:left;" >
-      <div id="project-detail" >
+        <div id="project-detail" >
+
       </div>
     </div>
   </div>
@@ -45,14 +42,30 @@ User: {{ user.get_username }}
     
     
     function show_content(content){
+
         $('#project-detail').html(content);
     }
+
+    function show_content_download(file_id,filename,content){
+        
+        
+            
+        var html_link='<a href="/reqs/'+file_id+'/">'+filename+'</a></br>'+content
+        $('#project-detail').html(html_link);
+
+        
+            
+       
+        
+    }
+
 
     $(function() {
         var selectedNode = $('#project-container').jstree().bind
         ("select_node.jstree", 
             function (event, data) {
-                show_content(data.node.data.jstree);
+                show_content_download(data.node.id,data.node.text,data.node.data.jstree);
+                //show_content(data.node.data.jstree)
             }
         )
     }); 

@@ -3,4 +3,5 @@ gunicorn==19.6.0
 django-jet
 django-markdownx
 django-admin-view-permission
-django-bootstrap4  
+django-bootstrap4
+xhtml2pdf
